@@ -1,0 +1,26 @@
+version: 0.2
+run-as: root
+env:
+  variables:
+      ENV_NAME: "DEV"
+phases:
+  install:
+    commands:
+      - "apt update"
+  pre_build:
+    commands:
+       - npm install
+  build:
+    commands:
+       - npm run build --if-present
+       - ls -lart
+  post_build:
+    commands:
+       - ""
+artifacts:
+  files:
+     - "**/*"
+  name: artifact
+cache:
+  paths:
+     - "node_modules/**/*"
